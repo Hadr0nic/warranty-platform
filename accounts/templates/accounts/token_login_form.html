@@ -1,0 +1,17 @@
+<h1>Login with Token</h1>
+
+<form method="post">
+{% csrf_token %}
+  <input
+    type="text"
+    name="token"
+    placeholder="Paste your login token"
+    required
+    style="width: 400px;"
+  >
+  <button type="submit">Login</button>
+</form>
+
+<p>
+  You can also open the login link directly from your email.
+</p>

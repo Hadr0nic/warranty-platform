@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <p>Hello {{ recipient.get_full_name|default:recipient.username }},</p>
+
+  <p>
+    A new comment has been added to the repair request:
+  </p>
+
+  <ul>
+    <li><strong>Repair:</strong> {{ repair.title }}</li>
+    <li><strong>Comment by:</strong> {{ commenter.get_full_name|default:commenter.username }}</li>
+  </ul>
+
+  <blockquote>
+    {{ comment.content }}
+  </blockquote>
+
+  <p>
+    Please log in to the admin panel to review.
+  </p>
+
+  <p>
+    — {{ site_name }}
+  </p>
+</body>
+</html>

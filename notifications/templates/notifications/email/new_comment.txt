@@ -1,0 +1,16 @@
+Hello {{ admin.username }},
+
+A new comment has been added to a repair request.
+
+Repair title:
+{{ repair.title }}
+
+Comment by:
+{{ comment.user.username }}
+
+Comment:
+{{ comment.content }}
+
+You can review it in the admin panel.
+
+— {{ site_name }}

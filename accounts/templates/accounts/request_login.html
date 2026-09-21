@@ -1,0 +1,18 @@
+<form method="post">
+  {% csrf_token %}
+  <input name="identifier" placeholder="Email or Phone">
+  <input type="password" name="password" placeholder="Password (optional)">
+  <select name="method">
+    <option value="email">Email Token</option>
+    <option value="sms">SMS Token</option>
+  </select>
+  <button type="submit">Login / Send Token</button>
+</form>
+
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}

@@ -1,0 +1,42 @@
+# Local database
+db.sqlite3
+db.sqlite3-journal
+
+# Uploaded media
+media/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Test / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Local / personal documents
+Foladgar - Google Docs.pdf

@@ -1,0 +1,194 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+  }
+
+  h1, h3 {
+    color: #2c3e50;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"], 
+  textarea, 
+  select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    min-height: 80px;
+  }
+
+  .submit-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #2980b9;
+  }
+
+  .optional {
+    font-weight: normal;
+    color: #888;
+  }
+
+  .required {
+    color: red;
+  }
+
+  a {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .messages {
+    padding: 10px;
+    background-color: #fde3e3;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+<h1>FG Warranty</h1>
+
+{% if request.user.is_authenticated %}
+  <p>Logged in as {{ request.user.username }}</p>
+  <p>
+    <a href="{% url 'dashboard' %}">Your Dashboard</a>
+  </p>
+  <form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
+{% else %}
+  <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<h3>Submit a Repair Request</h3>
+
+
+{% if messages %}
+  <div class="messages">
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+
+<form method="post" enctype="multipart/form-data" class="repair-form">
+  {% csrf_token %}
+
+  <!-- Repair title -->
+  <div class="form-group">
+    <label for="title">Repair Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="type a title for your repair"
+      required
+    >
+  </div>
+
+  <!-- Description -->
+  <div class="form-group">
+    <label for="description">Problem Description</label>
+    <textarea
+      id="description"
+      name="description"
+      placeholder="describe the issue in detail"
+      required
+    ></textarea>
+  </div>
+
+  <!-- Category -->
+  <div class="form-group">
+    <label for="product_category">Product Category</label>
+    <select id="product_category" name="product_category" required>
+      <option value="">Select product category</option>
+      {% for c in categories %}
+        <option value="{{ c.id }}">{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Address (optional) -->
+  <div class="form-group">
+    <label for="address">
+      Address <span class="optional">(optional)</span>
+    </label>
+    <input
+      type="text"
+      id="address"
+      name="address"
+      placeholder="if physical inspection is required"
+    >
+  </div>
+
+  <!-- Damage picture -->
+  <div class="form-group">
+    <label for="damage_picture">
+      Damage Photo <span class="optional">(optional)</span>
+    </label>
+    <input
+      type="file"
+      id="damage_picture"
+      name="damage_picture"
+      accept="image/*"
+    >
+  </div>
+
+  <!-- Warranty card -->
+  <div class="form-group">
+    <label for="warranty_card">
+      Warranty Card Photo <span class="required">*</span>
+    </label>
+    <input
+      type="file"
+      id="warranty_card"
+      name="warranty_card"
+      accept="image/*"
+      required
+    >
+  </div>
+
+  <button type="submit" class="submit-btn">
+    Submit Request
+  </button>
+</form>
+
