@@ -84,8 +84,6 @@ warranty/
 ├── repairs/         # Warranty and repair workflow
 ├── media/           # Local uploaded files (not tracked by Git)
 ├── manage.py
-├── project.md       # Project requirements and development notes
-├── how.md           # Development notes
 ├── .env.example     # Environment variable template
 └── README.md
 ```
